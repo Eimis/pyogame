@@ -44,7 +44,7 @@ def send_expeditions():
         if (
             bool(planet_ships.large_transporter.amount)
             and bool(planet_ships.explorer.amount)
-            and expedition_count < AVAILABLE_EXPEDITIONS
+            and int(expedition_count) < int(AVAILABLE_EXPEDITIONS)
         ):
 
             logger.info('Attempting to send Expedition for planet: {0}'.format(planet))
