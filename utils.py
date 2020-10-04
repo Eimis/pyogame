@@ -42,8 +42,7 @@ def send_expeditions():
         planet_ships = empire.ships(planet)
 
         if (
-            bool(planet_ships.large_transporter.amount)
-            and bool(planet_ships.explorer.amount)
+            and bool(planet_ships.explorer.amount and planet_ships.large_transporter.amount)
             and int(expedition_count) < int(AVAILABLE_EXPEDITIONS)
         ):
 
