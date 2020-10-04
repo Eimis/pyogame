@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  ogame:
+    env_file: .env
+    container_name: ogame
+    build: .
+    tty: true
+    volumes:
+      - .:/code
