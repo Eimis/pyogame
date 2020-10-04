@@ -1,2 +1,3 @@
 requests
 ipython
+celery==5.0.0
