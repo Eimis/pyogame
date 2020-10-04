@@ -782,10 +782,11 @@ class OGame(object):
                                'attribute', 'data-status')
 
         class light_fighter_class:
-            amount = ships_amount[0]
-            data = OGame.collect_status(status[0])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[0]
+                data = OGame.collect_status(status[0])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class heavy_fighter_class:
             amount = ships_amount[1]
@@ -1273,8 +1274,8 @@ class OGame(object):
         return spyreports
 
     def send_fleet(self, mission, id, where, ships, resources=[0, 0, 0], speed=10, holdingtime=0):
-        response = self.session.get(self.index_php + 'page=ingame&component=fleetdispatch&cp={}'.format(id)).text
-        html = OGame.HTML(response)
+        response = self.session.get(self.index_php + 'page=ingame&component=fleetdispatch'.format(id))
+        html = OGame.HTML(response.text)
         sendfleet_token = None
         for line in html.find_all('type', 'textjavascript', 'value'):
             if 'fleetSendingToken' in line:
@@ -1303,8 +1304,11 @@ class OGame(object):
             url=self.index_php + 'page=ingame&component=fleetdispatch&action=sendFleet&ajax=1&asJson=1',
             data=form_data,
             headers={'X-Requested-With': 'XMLHttpRequest'}
-        ).json()
-        return response['success']
+        )
+
+        # print(response.json())
+
+        return response.json()
 
     def return_fleet(self, fleet_id):
         self.session.get(self.index_php + 'page=ingame&component=movement&return={}'.format(fleet_id))
