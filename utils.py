@@ -47,7 +47,7 @@ def send_expeditions():
             and expedition_count < AVAILABLE_EXPEDITIONS
         ):
 
-            logger.info('Attempting to send Expedition for planet: '.format(planet))
+            logger.info('Attempting to send Expedition for planet: {0}'.format(planet))
 
             empire.send_fleet(
                 mission=mission.expedition,
