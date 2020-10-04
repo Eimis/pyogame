@@ -54,8 +54,19 @@ def send_expeditions():
                 id=id,
                 where=coordinates(8, 208, 16),
                 ships=[
+                    # Expedition ships:
                     ships.large_transporter(planet_ships.large_transporter.amount),
+                    ships.small_transporter(planet_ships.small_transporter.amount),
                     ships.explorer(planet_ships.explorer.amount),
+                    # Fighter ships:
+                    ships.light_fighter(planet_ships.light_fighter.amount),
+                    ships.heavy_fighter(planet_ships.heavy_fighter.amount),
+                    ships.cruiser(planet_ships.cruiser.amount),
+                    ships.battleship(planet_ships.battleship.amount),
+                    ships.battlecruiser(planet_ships.battlecruiser.amount),
+                    ships.bomber(planet_ships.bomber.amount),
+                    ships.destroyer(planet_ships.destroyer.amount),
+                    ships.reaper(planet_ships.reaper.amount),
                 ],
                 resources=[0, 0, 0],  # optional default no resources
                 speed=speed.max,      # optional default speed.max
