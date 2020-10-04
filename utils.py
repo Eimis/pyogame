@@ -66,7 +66,7 @@ def send_expeditions():
                     ships.heavy_fighter(planet_ships.heavy_fighter.amount),
                     ships.cruiser(planet_ships.cruiser.amount),
                     ships.battleship(planet_ships.battleship.amount),
-                    ships.battlecruiser(planet_ships.battlecruiser.amount),
+                    ships.interceptor(planet_ships.interceptor.amount),  # battlecruiser
                     ships.bomber(planet_ships.bomber.amount),
                     ships.destroyer(planet_ships.destroyer.amount),
                     ships.reaper(planet_ships.reaper.amount),
