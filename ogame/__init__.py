@@ -792,101 +792,117 @@ class OGame(object):
                 in_construction = data[1]
 
         class heavy_fighter_class:
-            amount = ships_amount[1]
-            data = OGame.collect_status(status[1])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[1]
+                data = OGame.collect_status(status[1])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class cruiser_class:
-            amount = ships_amount[2]
-            data = OGame.collect_status(status[2])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[2]
+                data = OGame.collect_status(status[2])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class battleship_class:
-            amount = ships_amount[3]
-            data = OGame.collect_status(status[3])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[3]
+                data = OGame.collect_status(status[3])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class interceptor_class:
-            amount = ships_amount[4]
-            data = OGame.collect_status(status[4])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[4]
+                data = OGame.collect_status(status[4])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class bomber_class:
-            amount = ships_amount[5]
-            data = OGame.collect_status(status[5])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[5]
+                data = OGame.collect_status(status[5])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class destroyer_class:
-            amount = ships_amount[6]
-            data = OGame.collect_status(status[6])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[6]
+                data = OGame.collect_status(status[6])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class deathstar_class:
-            amount = ships_amount[7]
-            data = OGame.collect_status(status[7])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[7]
+                data = OGame.collect_status(status[7])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class reaper_class:
-            amount = ships_amount[8]
-            data = OGame.collect_status(status[8])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[8]
+                data = OGame.collect_status(status[8])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class explorer_class:
-            amount = ships_amount[9]
-            data = OGame.collect_status(status[9])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[9]
+                data = OGame.collect_status(status[9])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class small_transporter_class:
-            amount = ships_amount[10]
-            data = OGame.collect_status(status[10])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[10]
+                data = OGame.collect_status(status[10])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class large_transporter_class:
-            amount = ships_amount[11]
-            data = OGame.collect_status(status[11])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[11]
+                data = OGame.collect_status(status[11])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class colonyShip_class:
-            amount = ships_amount[12]
-            data = OGame.collect_status(status[12])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[12]
+                data = OGame.collect_status(status[12])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class recycler_class:
-            amount = ships_amount[13]
-            data = OGame.collect_status(status[13])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[13]
+                data = OGame.collect_status(status[13])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class espionage_probe_class:
-            amount = ships_amount[14]
-            data = OGame.collect_status(status[14])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[14]
+                data = OGame.collect_status(status[14])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class solarSatellite_class:
-            amount = ships_amount[15]
-            data = OGame.collect_status(status[15])
-            is_possible = data[0]
-            in_construction = data[1]
+            if ships_amount:
+                amount = ships_amount[15]
+                data = OGame.collect_status(status[15])
+                is_possible = data[0]
+                in_construction = data[1]
 
         class crawler_class:
             if id not in OGame.moon_ids(self):
-                amount = ships_amount[16]
-                data = OGame.collect_status(status[16])
-                is_possible = data[0]
-                in_construction = data[1]
+                if ships_amount:
+                    amount = ships_amount[16]
+                    data = OGame.collect_status(status[16])
+                    is_possible = data[0]
+                    in_construction = data[1]
             else:
                 amount = 0
                 is_possible = False
