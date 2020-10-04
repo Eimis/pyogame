@@ -1309,7 +1309,7 @@ class OGame(object):
             headers={'X-Requested-With': 'XMLHttpRequest'}
         )
 
-        logger.info('Response from expedition: '.format(response.json()))
+        logger.info('Response from expedition: {0}'.format(response.json()))
 
         return response.json()
 
