@@ -52,7 +52,7 @@ def send_expeditions():
             empire.send_fleet(
                 mission=mission.expedition,
                 id=id,
-                where=coordinates([
+                where=coordinates(*[
                     int(s) for s in os.environ.get('EXPEDITION_COORDS').split(', ')
                     if s.isdigit()
                 ]),
