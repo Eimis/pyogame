@@ -38,26 +38,28 @@ def send_expeditions():
 
     AVAILABLE_EXPEDITIONS = 5
 
-    if expedition_count < AVAILABLE_EXPEDITIONS:
-        for planet in empire.planet_ids():
-            planet_ships = empire.ships(planet)
+    for planet in empire.planet_ids():
+        planet_ships = empire.ships(planet)
 
-            if (
-                bool(planet_ships.large_transporter.amount)
-                and bool(planet_ships.explorer.amount)
-            ):
+        if (
+            bool(planet_ships.large_transporter.amount)
+            and bool(planet_ships.explorer.amount)
+            and expedition_count < AVAILABLE_EXPEDITIONS
+        ):
 
-                logger.info('Attempting to send Expedition for planet: '.format(planet))
+            logger.info('Attempting to send Expedition for planet: '.format(planet))
 
-                empire.send_fleet(
-                    mission=mission.expedition,
-                    id=id,
-                    where=coordinates(8, 208, 16),
-                    ships=[
-                        ships.large_transporter(planet_ships.large_transporter.amount),
-                        ships.explorer(planet_ships.explorer.amount),
-                    ],
-                    resources=[0, 0, 0],  # optional default no resources
-                    speed=speed.max,      # optional default speed.max
-                    holdingtime=2
-                )
+            empire.send_fleet(
+                mission=mission.expedition,
+                id=id,
+                where=coordinates(8, 208, 16),
+                ships=[
+                    ships.large_transporter(planet_ships.large_transporter.amount),
+                    ships.explorer(planet_ships.explorer.amount),
+                ],
+                resources=[0, 0, 0],  # optional default no resources
+                speed=speed.max,      # optional default speed.max
+                holdingtime=2
+            )
+
+            expedition_count += 1
