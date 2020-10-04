@@ -25,7 +25,7 @@ logger = get_task_logger(__name__)
 def send_expeditions():
 
     empire = OGame(
-        'Leda',
+        os.environ.get('UNI'),
         os.environ.get('OGAME_USERNAME'),
         os.environ.get('OGAME_PASSWORD'),
     )
@@ -36,7 +36,7 @@ def send_expeditions():
         if fleet.mission == mission.expedition]
     )
 
-    AVAILABLE_EXPEDITIONS = 5
+    AVAILABLE_EXPEDITIONS = os.environ.get('AVAILABLE_EXPEDITIONS')
 
     for planet in empire.planet_ids():
         planet_ships = empire.ships(planet)
@@ -52,7 +52,7 @@ def send_expeditions():
             empire.send_fleet(
                 mission=mission.expedition,
                 id=id,
-                where=coordinates(8, 208, 16),
+                where=coordinates(os.environ.get('EXPEDITION_COORDS')),
                 ships=[
                     # Expedition ships:
                     ships.large_transporter(planet_ships.large_transporter.amount),
