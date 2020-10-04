@@ -1306,7 +1306,7 @@ class OGame(object):
             headers={'X-Requested-With': 'XMLHttpRequest'}
         )
 
-        # print(response.json())
+        print(response.json())
 
         return response.json()
 
