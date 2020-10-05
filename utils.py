@@ -41,12 +41,12 @@ def send_expeditions():
     for planet in empire.planet_ids():
         planet_ships = empire.ships(planet)
 
+        logger.info('Attempting to send Expedition for planet: {0}'.format(planet))
+
         if (
             bool(planet_ships.explorer.amount and planet_ships.large_transporter.amount)
             and int(expedition_count) < int(AVAILABLE_EXPEDITIONS)
         ):
-
-            logger.info('Attempting to send Expedition for planet: {0}'.format(planet))
 
             empire.send_fleet(
                 mission=mission.expedition,
@@ -80,7 +80,3 @@ def send_expeditions():
             logger.info('No expeditions were started, current count: {0}'.format(
                 expedition_count
             ))
-
-            break
-
-    empire.logout()
