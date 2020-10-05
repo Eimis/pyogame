@@ -82,3 +82,5 @@ def send_expeditions():
             ))
 
             break
+
+    empire.logout()
