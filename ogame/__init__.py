@@ -42,9 +42,6 @@ class OGame(object):
                           'autoGameAccountCreation': False}
             response = self.session.post('https://gameforge.com/api/v1/auth/thin/sessions', json=login_data)
             if response.status_code is not 201:
-
-                logger.info(response.json())
-
                 raise Exception('Bad Login')
             self.token = response.json()['token']
             self.session.headers.update({'authorization': 'Bearer {}'.format(self.token)})
