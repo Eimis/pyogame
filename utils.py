@@ -75,7 +75,6 @@ def send_expeditions():
                 holdingtime=2
             )
 
-            expedition_count += 1
         else:
             logger.info('No expeditions were started, current count: {0}'.format(
                 expedition_count
