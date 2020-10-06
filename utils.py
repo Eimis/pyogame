@@ -80,3 +80,5 @@ def send_expeditions():
             logger.info('No expeditions were started, current count: {0}'.format(
                 expedition_count
             ))
+
+    empire.logout()
