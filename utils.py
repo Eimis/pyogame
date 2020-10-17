@@ -74,7 +74,7 @@ def send_expeditions():
                 resources=[
                     0,
                     res.crystal,
-                    res.deuterium
+                    res.deuterium - 50000,
                 ],
                 speed=speed.max,      # optional default speed.max
                 holdingtime=2
@@ -121,7 +121,7 @@ def send_expeditions():
                 resources=[
                     0,
                     res.crystal,
-                    res.deuterium,
+                    res.deuterium - 50000,
                 ],
                 speed=speed.max,      # optional default speed.max
                 holdingtime=2
