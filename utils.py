@@ -10,12 +10,12 @@ from celery.utils.log import get_task_logger
 
 app = Celery('tasks', broker=os.environ.get('CELERY_BROKER_URL'))
 
-app.conf.beat_schedule = {
-    'send-expeditions': {
-        'task': 'utils.send_expeditions',
-        'schedule': crontab(minute='*/15'),  # every 15 mins
-    },
-}
+#app.conf.beat_schedule = {
+#    'send-expeditions': {
+#        'task': 'utils.send_expeditions',
+#        'schedule': crontab(minute='*/15'),  # every 15 mins
+#    },
+#}
 app.conf.timezone = 'Europe/Vilnius'
 
 logger = get_task_logger(__name__)
@@ -38,10 +38,10 @@ def send_expeditions():
 
     AVAILABLE_EXPEDITIONS = os.environ.get('AVAILABLE_EXPEDITIONS')
 
-    for planet in empire.planet_ids():
+    for planet in empire.moon_ids():
         planet_ships = empire.ships(planet)
 
-        logger.info('Attempting to send Expedition for planet: {0}'.format(planet))
+        logger.info('Attempting to send Expedition for MOON: {0}'.format(planet))
 
         if (
             bool(planet_ships.explorer.amount and planet_ships.large_transporter.amount)
@@ -61,14 +61,56 @@ def send_expeditions():
                     ships.small_transporter(planet_ships.small_transporter.amount),
                     ships.explorer(planet_ships.explorer.amount),
                     # Fighter ships:
-                    ships.light_fighter(planet_ships.light_fighter.amount),
-                    ships.heavy_fighter(planet_ships.heavy_fighter.amount),
-                    ships.cruiser(planet_ships.cruiser.amount),
-                    ships.battleship(planet_ships.battleship.amount),
+                   #ships.light_fighter(planet_ships.light_fighter.amount),
+                   #ships.heavy_fighter(planet_ships.heavy_fighter.amount),
+                   #ships.cruiser(planet_ships.cruiser.amount),
+                   #ships.battleship(planet_ships.battleship.amount),
                     ships.interceptor(planet_ships.interceptor.amount),  # battlecruiser
-                    ships.bomber(planet_ships.bomber.amount),
-                    ships.destroyer(planet_ships.destroyer.amount),
-                    ships.reaper(planet_ships.reaper.amount),
+                   #ships.bomber(planet_ships.bomber.amount),
+                   #ships.destroyer(planet_ships.destroyer.amount),
+                   #ships.reaper(planet_ships.reaper.amount),
+                ],
+                resources=[0, 0, 0],  # optional default no resources
+                speed=speed.max,      # optional default speed.max
+                holdingtime=2
+            )
+
+        else:
+            logger.info('No expeditions were started, current count: {0}'.format(
+                expedition_count
+            ))
+
+    for planet in empire.planet_ids():
+        planet_ships = empire.ships(planet)
+
+        logger.info('Attempting to send Expedition for PLANET: {0}'.format(planet))
+
+        if (
+            bool(planet_ships.explorer.amount and planet_ships.large_transporter.amount)
+            and int(expedition_count) < int(AVAILABLE_EXPEDITIONS)
+        ):
+
+            empire.send_fleet(
+                mission=mission.expedition,
+                id=id,
+                where=coordinates(*[
+                    int(s) for s in os.environ.get('EXPEDITION_COORDS').split(', ')
+                    if s.isdigit()
+                ]),
+                ships=[
+                    # Expedition ships:
+                    ships.large_transporter(planet_ships.large_transporter.amount),
+                    ships.small_transporter(planet_ships.small_transporter.amount),
+                    ships.explorer(planet_ships.explorer.amount),
+                    # Fighter ships:
+                   #ships.light_fighter(planet_ships.light_fighter.amount),
+                   #ships.heavy_fighter(planet_ships.heavy_fighter.amount),
+                   #ships.cruiser(planet_ships.cruiser.amount),
+                   #ships.battleship(planet_ships.battleship.amount),
+                    ships.interceptor(planet_ships.interceptor.amount),  # battlecruiser
+                   #ships.bomber(planet_ships.bomber.amount),
+                   #ships.destroyer(planet_ships.destroyer.amount),
+                   #ships.reaper(planet_ships.reaper.amount),
                 ],
                 resources=[0, 0, 0],  # optional default no resources
                 speed=speed.max,      # optional default speed.max
