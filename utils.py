@@ -40,6 +40,7 @@ def send_expeditions():
 
     for planet in empire.moon_ids():
         planet_ships = empire.ships(planet)
+        res = empire.resources(planet)
 
         logger.info('Attempting to send Expedition for MOON: {0}'.format(planet))
 
@@ -70,7 +71,11 @@ def send_expeditions():
                    #ships.destroyer(planet_ships.destroyer.amount),
                    #ships.reaper(planet_ships.reaper.amount),
                 ],
-                resources=[0, 0, 0],  # optional default no resources
+                resources=[
+                    0,
+                    res.crystal,
+                    res.deuterium
+                ],
                 speed=speed.max,      # optional default speed.max
                 holdingtime=2
             )
@@ -82,6 +87,7 @@ def send_expeditions():
 
     for planet in empire.planet_ids():
         planet_ships = empire.ships(planet)
+        res = empire.resources(planet)
 
         logger.info('Attempting to send Expedition for PLANET: {0}'.format(planet))
 
@@ -112,7 +118,11 @@ def send_expeditions():
                    #ships.destroyer(planet_ships.destroyer.amount),
                    #ships.reaper(planet_ships.reaper.amount),
                 ],
-                resources=[0, 0, 0],  # optional default no resources
+                resources=[
+                    0,
+                    res.crystal,
+                    res.deuterium,
+                ],
                 speed=speed.max,      # optional default speed.max
                 holdingtime=2
             )
